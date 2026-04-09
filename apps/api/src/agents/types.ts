@@ -11,6 +11,6 @@ export interface AgentContext {
 }
 
 export interface AgentStreamResult {
-  readonly text: Promise<string>;
-  toDataStreamResponse(options?: { headers?: Record<string, string> }): Response;
+  readonly text: PromiseLike<string>;
+  toTextStreamResponse(init?: ResponseInit): Response;
 }

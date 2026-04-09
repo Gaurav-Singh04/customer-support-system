@@ -64,7 +64,7 @@ export async function sendMessage(input: {
 
   const result = AGENT_MAP[agentType].invoke(ctx);
 
-  result.text
+  Promise.resolve(result.text)
     .then(async (fullText) => {
       if (fullText) {
         await chatService.saveAssistantMessage(db, conversationId, agentType, fullText);
@@ -74,7 +74,7 @@ export async function sendMessage(input: {
       console.error('Failed to persist assistant message:', err);
     });
 
-  const response = result.toDataStreamResponse({
+  const response = result.toTextStreamResponse({
     headers: {
       'X-Conversation-Id': conversationId,
       'X-Agent-Type': agentType,

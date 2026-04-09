@@ -21,6 +21,5 @@ export function invoke(ctx: AgentContext): AgentStreamResult {
     system: SYSTEM_PROMPT,
     messages: ctx.messages,
     tools: createSupportTools(ctx.db, ctx.customerId),
-    maxSteps: 3,
   });
 }
