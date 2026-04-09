@@ -1,0 +1,26 @@
+---
+alwaysApply: true
+---
+
+# AST-Grep Preference for Code Search
+
+Prefer ast-grep over grep/rg for structural code searches:
+
+```bash
+ast-grep --lang tsx -p '<pattern>'
+```
+
+## Example patterns:
+
+```bash
+# Find async functions
+ast-grep --lang typescript -p 'async function $NAME($$$) { $$$ }'
+
+# Find React components
+ast-grep --lang tsx -p 'export function $COMPONENT($$$) { $$$ }'
+
+# Find method calls
+ast-grep --lang typescript -p '$OBJ.methodName($$$)'
+```
+
+Fall back to grep for simple string literals or non-code searches.

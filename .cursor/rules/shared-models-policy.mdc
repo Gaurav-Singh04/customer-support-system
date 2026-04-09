@@ -1,0 +1,26 @@
+---
+description: Enforces that all new shared models are created in packages/shared
+globs:
+alwaysApply: true
+---
+
+# Shared Models Policy
+
+All shared models (API request/response interfaces, database models, enums, types) must live in `packages/shared/src/`.
+
+## Creating new models
+
+1. Create the file in `packages/shared/src/` following the existing directory structure
+2. Export it from `packages/shared/src/index.ts`
+3. Import from `@fotello/shared` in both frontend and backend
+
+## Do NOT create models in these locations
+
+- `apps/web/models/` — legacy location, being migrated
+- `apps/backend/functions/src/models/` — legacy location, being migrated
+
+Existing files in these directories are legacy and will be migrated incrementally. Never add new files there.
+
+## BaseApiRequest
+
+All API request interfaces must extend `BaseApiRequest` from `@fotello/shared`. The `teamId` field is required.

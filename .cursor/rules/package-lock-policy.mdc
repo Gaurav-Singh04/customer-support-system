@@ -1,0 +1,16 @@
+---
+description: Enforces where package-lock.json files are allowed in the monorepo
+globs:
+alwaysApply: true
+---
+
+# Package Lock Policy
+
+`package-lock.json` must only exist in two locations:
+
+1. **Repository root** — npm workspaces root that manages `apps/web` and `apps/backend`
+2. **`apps/backend/functions/`** — Firebase Functions deploys independently with its own `node_modules`
+
+Never create or commit `package-lock.json` inside `apps/web/` or `apps/backend/` directly. These are npm workspace members and their dependencies are resolved from the root lockfile.
+
+If you see a `package-lock.json` in `apps/web/` or `apps/backend/` (not `apps/backend/functions/`), delete it and run `npm install` from the repository root instead.
