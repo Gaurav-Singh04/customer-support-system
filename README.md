@@ -73,7 +73,7 @@ Edit `.env` and set:
 |----------|----------|---------|-------------|
 | `DATABASE_URL` | Yes | — | PostgreSQL connection string |
 | `GOOGLE_GENERATIVE_AI_API_KEY` | Yes | — | Google AI Studio API key |
-| `AI_MODEL` | No | `gemini-2.0-flash` | Gemini model identifier |
+| `AI_MODEL` | No | `gemini-3.1-flash-lite-preview` | Gemini model identifier |
 | `PORT` | No | `3001` | API server port |
 
 ### 3. Set up the database
