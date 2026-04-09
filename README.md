@@ -2,6 +2,11 @@
 
 A multi-agent AI customer support system built as a Turborepo monorepo. A **router agent** classifies every incoming message and delegates it to a specialised sub-agent (Support, Order, or Billing), each with its own scoped database tools. Responses stream back to a React chat UI in real time.
 
+
+## UI
+<img width="3024" height="1822" alt="image" src="https://github.com/user-attachments/assets/703ae18b-33d8-417f-a509-37f881cb6516" />
+<img width="3024" height="1818" alt="image" src="https://github.com/user-attachments/assets/b2da1c08-1e93-428a-8a41-03d3debdf7fc" />
+
 ## Workspace Structure
 
 ```
