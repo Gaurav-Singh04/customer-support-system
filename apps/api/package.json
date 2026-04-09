@@ -1,0 +1,19 @@
+{
+  "name": "@swades/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.3",
+    "@swades/db": "*",
+    "hono": "^4.9.7"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.6"
+  }
+}
