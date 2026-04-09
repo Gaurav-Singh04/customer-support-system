@@ -1,7 +1,11 @@
 import { eq, desc } from 'drizzle-orm';
 import { messages, customers, type DatabaseClient } from '@swades/db';
+import type { ModelMessage } from 'ai';
 import * as conversationService from './conversation.service';
 import { ApiError } from '../lib/errors';
+import type { RoutableAgentType } from '../agents/types';
+
+const CONTEXT_WINDOW_SIZE = 20;
 
 interface SendMessageInput {
   conversationId?: string;
@@ -52,11 +56,41 @@ export async function sendMessage(db: DatabaseClient, input: SendMessageInput) {
 export async function getRecentMessages(
   db: DatabaseClient,
   conversationId: string,
-  limit = 50,
+  limit = CONTEXT_WINDOW_SIZE,
 ) {
-  return db.query.messages.findMany({
+  const rows = await db.query.messages.findMany({
     where: eq(messages.conversationId, conversationId),
     orderBy: [desc(messages.createdAt)],
     limit,
   });
+  return rows.reverse();
+}
+
+export function buildContextMessages(
+  dbMessages: { role: string; content: string }[],
+): ModelMessage[] {
+  return dbMessages.map((m) => ({
+    role: m.role as 'user' | 'assistant' | 'system',
+    content: m.content,
+  }));
+}
+
+export async function saveAssistantMessage(
+  db: DatabaseClient,
+  conversationId: string,
+  agentType: RoutableAgentType,
+  content: string,
+) {
+  const [row] = await db
+    .insert(messages)
+    .values({
+      conversationId,
+      role: 'assistant',
+      agentType,
+      content,
+    })
+    .returning();
+
+  await conversationService.touch(db, conversationId);
+  return row;
 }

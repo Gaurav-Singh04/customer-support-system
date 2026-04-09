@@ -25,6 +25,6 @@ export const chatRoutes = new Hono()
   })
   .post('/messages', zValidator('json', sendMessageSchema), async (c) => {
     const body = c.req.valid('json');
-    const result = await chatController.sendMessage(body);
-    return c.json(result, 201);
+    const { response } = await chatController.sendMessage(body);
+    return response;
   });

@@ -13,6 +13,7 @@ app.use(
     origin: ['http://localhost:3000', 'http://localhost:5173'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type'],
+    exposeHeaders: ['X-Conversation-Id', 'X-Agent-Type'],
     maxAge: 86400,
   }),
 );

@@ -21,7 +21,7 @@ const agents: Record<AgentType, AgentDefinition> = {
     ],
     tools: [
       'getConversationHistory',
-      'searchKnowledgeBase',
+      'getCustomerInfo',
     ],
   },
   order: {
