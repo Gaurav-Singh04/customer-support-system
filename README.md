@@ -1,4 +1,4 @@
-# Swades Customer Support AI
+# Customer Support AI
 
 A multi-agent AI customer support system built as a Turborepo monorepo. A **router agent** classifies every incoming message and delegates it to a specialised sub-agent (Support, Order, or Billing), each with its own scoped database tools. Responses stream back to a React chat UI in real time.
 
