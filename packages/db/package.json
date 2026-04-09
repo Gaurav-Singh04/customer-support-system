@@ -9,8 +9,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm --clean",
     "db:generate": "drizzle-kit generate --name initial_schema",
-    "db:migrate": "tsx src/migrate.ts",
-    "db:seed": "tsx src/seed.ts",
+    "db:migrate": "node --env-file=../../.env --import=tsx src/migrate.ts",
+    "db:seed": "node --env-file=../../.env --import=tsx src/seed.ts",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {

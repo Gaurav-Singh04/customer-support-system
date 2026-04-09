@@ -9,6 +9,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev --parallel",
+    "test": "turbo test",
     "typecheck": "turbo typecheck",
     "db:build": "npm run build --workspace @swades/db",
     "lint": "eslint .",
