@@ -8,12 +8,12 @@ export function createSupportTools(db: DatabaseClient, customerId: string) {
     getConversationHistory: tool({
       description:
         'Retrieve messages from a specific conversation. Useful for reviewing context beyond the recent message window.',
-      parameters: zodSchema(
+      inputSchema: zodSchema(
         z.object({
           conversationId: z.string().uuid().describe('The conversation ID'),
         }),
       ),
-      execute: async ({ conversationId }) => {
+      execute: async ({ conversationId }: { conversationId: string }) => {
         const convo = await db.query.conversations.findFirst({
           where: and(
             eq(conversations.id, conversationId),
@@ -38,7 +38,7 @@ export function createSupportTools(db: DatabaseClient, customerId: string) {
 
     getCustomerInfo: tool({
       description: 'Look up the current customer profile including name, email, and phone.',
-      parameters: zodSchema(z.object({})),
+      inputSchema: zodSchema(z.object({})),
       execute: async () => {
         const customer = await db.query.customers.findFirst({
           where: eq(customers.id, customerId),

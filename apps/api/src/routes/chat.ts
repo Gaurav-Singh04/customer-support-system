@@ -3,9 +3,11 @@ import { zValidator } from '@hono/zod-validator';
 import { z } from 'zod';
 import * as chatController from '../controllers/chat.controller';
 
+const uuidLike = z.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
+
 const sendMessageSchema = z.object({
-  conversationId: z.string().uuid().optional(),
-  customerId: z.string().uuid(),
+  conversationId: uuidLike.optional(),
+  customerId: uuidLike,
   content: z.string().min(1).max(10_000),
 });
 

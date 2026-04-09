@@ -7,7 +7,7 @@ export function createBillingTools(db: DatabaseClient, customerId: string) {
   return {
     getCustomerInvoices: tool({
       description: 'List all invoices for the current customer including status and amounts.',
-      parameters: zodSchema(z.object({})),
+      inputSchema: zodSchema(z.object({})),
       execute: async () => {
         const rows = await db.query.invoices.findMany({
           where: eq(invoices.customerId, customerId),
@@ -29,7 +29,7 @@ export function createBillingTools(db: DatabaseClient, customerId: string) {
     getInvoiceDetails: tool({
       description:
         'Fetch full details for a specific invoice by its number (e.g. INV-1001), including related order and refunds.',
-      parameters: zodSchema(
+      inputSchema: zodSchema(
         z.object({
           invoiceNumber: z.string().describe('The invoice number, e.g. INV-1001'),
         }),
@@ -73,7 +73,7 @@ export function createBillingTools(db: DatabaseClient, customerId: string) {
 
     getCustomerRefunds: tool({
       description: 'List all refunds for the current customer.',
-      parameters: zodSchema(z.object({})),
+      inputSchema: zodSchema(z.object({})),
       execute: async () => {
         const rows = await db.query.refunds.findMany({
           where: eq(refunds.customerId, customerId),
@@ -94,7 +94,7 @@ export function createBillingTools(db: DatabaseClient, customerId: string) {
     getRefundDetails: tool({
       description:
         'Fetch full details for a specific refund by its number (e.g. RFD-2001), including related invoice and order.',
-      parameters: zodSchema(
+      inputSchema: zodSchema(
         z.object({
           refundNumber: z.string().describe('The refund number, e.g. RFD-2001'),
         }),

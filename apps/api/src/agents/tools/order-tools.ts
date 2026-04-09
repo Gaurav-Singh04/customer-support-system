@@ -7,7 +7,7 @@ export function createOrderTools(db: DatabaseClient, customerId: string) {
   return {
     getCustomerOrders: tool({
       description: 'List all orders for the current customer including status and totals.',
-      parameters: zodSchema(z.object({})),
+      inputSchema: zodSchema(z.object({})),
       execute: async () => {
         const rows = await db.query.orders.findMany({
           where: eq(orders.customerId, customerId),
@@ -29,7 +29,7 @@ export function createOrderTools(db: DatabaseClient, customerId: string) {
     getOrderDetails: tool({
       description:
         'Fetch full details for a specific order by its order number (e.g. SW-1001), including tracking events.',
-      parameters: zodSchema(
+      inputSchema: zodSchema(
         z.object({
           orderNumber: z.string().describe('The order number, e.g. SW-1001'),
         }),
@@ -61,7 +61,7 @@ export function createOrderTools(db: DatabaseClient, customerId: string) {
 
     getOrderEvents: tool({
       description: 'Get tracking and shipment events for a specific order.',
-      parameters: zodSchema(
+      inputSchema: zodSchema(
         z.object({
           orderId: z.string().uuid().describe('The order ID (UUID)'),
         }),
