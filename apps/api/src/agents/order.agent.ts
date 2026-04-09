@@ -1,4 +1,4 @@
-import { streamText } from 'ai';
+import { streamText, stepCountIs } from 'ai';
 import { getChatModel } from './model';
 import { createOrderTools } from './tools/order-tools';
 import type { AgentContext, AgentStreamResult } from './types';
@@ -22,5 +22,6 @@ export function invoke(ctx: AgentContext): AgentStreamResult {
     system: SYSTEM_PROMPT,
     messages: ctx.messages,
     tools: createOrderTools(ctx.db, ctx.customerId),
+    stopWhen: stepCountIs(5),
   });
 }
