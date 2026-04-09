@@ -274,4 +274,11 @@ export const schema = {
   orderEvents,
   invoices,
   refunds,
+  customersRelations,
+  conversationsRelations,
+  messagesRelations,
+  ordersRelations,
+  orderEventsRelations,
+  invoicesRelations,
+  refundsRelations,
 };
