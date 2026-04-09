@@ -6,8 +6,7 @@ import { invoices, refunds, orders, type DatabaseClient } from '@swades/db';
 export function createBillingTools(db: DatabaseClient, customerId: string) {
   return {
     getCustomerInvoices: tool({
-      description:
-        'List all invoices for the current customer including status and amounts.',
+      description: 'List all invoices for the current customer including status and amounts.',
       parameters: zodSchema(z.object({})),
       execute: async () => {
         const rows = await db.query.invoices.findMany({
@@ -102,20 +101,13 @@ export function createBillingTools(db: DatabaseClient, customerId: string) {
       ),
       execute: async ({ refundNumber }) => {
         const r = await db.query.refunds.findFirst({
-          where: and(
-            eq(refunds.refundNumber, refundNumber),
-            eq(refunds.customerId, customerId),
-          ),
+          where: and(eq(refunds.refundNumber, refundNumber), eq(refunds.customerId, customerId)),
         });
         if (!r) return { error: `Refund ${refundNumber} not found` };
 
         const [relatedInvoice, relatedOrder] = await Promise.all([
-          r.invoiceId
-            ? db.query.invoices.findFirst({ where: eq(invoices.id, r.invoiceId) })
-            : null,
-          r.orderId
-            ? db.query.orders.findFirst({ where: eq(orders.id, r.orderId) })
-            : null,
+          r.invoiceId ? db.query.invoices.findFirst({ where: eq(invoices.id, r.invoiceId) }) : null,
+          r.orderId ? db.query.orders.findFirst({ where: eq(orders.id, r.orderId) }) : null,
         ]);
 
         return {

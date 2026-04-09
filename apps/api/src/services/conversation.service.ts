@@ -43,10 +43,7 @@ export async function getById(db: DatabaseClient, id: string) {
   });
 }
 
-export async function create(
-  db: DatabaseClient,
-  data: { customerId: string; subject: string },
-) {
+export async function create(db: DatabaseClient, data: { customerId: string; subject: string }) {
   const [row] = await db
     .insert(conversations)
     .values({ customerId: data.customerId, subject: data.subject })
@@ -65,8 +62,5 @@ export async function remove(db: DatabaseClient, id: string) {
 }
 
 export async function touch(db: DatabaseClient, id: string) {
-  await db
-    .update(conversations)
-    .set({ updatedAt: new Date() })
-    .where(eq(conversations.id, id));
+  await db.update(conversations).set({ updatedAt: new Date() }).where(eq(conversations.id, id));
 }

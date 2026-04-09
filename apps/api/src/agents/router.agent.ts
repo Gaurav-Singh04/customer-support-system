@@ -13,9 +13,7 @@ Classify the user's latest message into exactly one agent type:
 
 When uncertain, choose "support".`;
 
-export async function classifyIntent(
-  contextMessages: ModelMessage[],
-): Promise<RoutableAgentType> {
+export async function classifyIntent(contextMessages: ModelMessage[]): Promise<RoutableAgentType> {
   try {
     const { object } = await generateObject({
       model: getChatModel(),

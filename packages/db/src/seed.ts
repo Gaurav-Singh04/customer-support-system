@@ -82,7 +82,8 @@ const messageSeed: NewMessage[] = [
     conversationId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa1',
     role: 'assistant',
     agentType: 'order',
-    content: 'The carrier reported a one-day delay after a hub scan in Newark. The new delivery target is April 9.',
+    content:
+      'The carrier reported a one-day delay after a hub scan in Newark. The new delivery target is April 9.',
     createdAt: new Date('2026-04-08T09:00:45.000Z'),
   },
   {
@@ -120,7 +121,8 @@ const messageSeed: NewMessage[] = [
     conversationId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
     role: 'assistant',
     agentType: 'billing',
-    content: 'Autopay failed because the card on file expired in March, so the balance is still due.',
+    content:
+      'Autopay failed because the card on file expired in March, so the balance is still due.',
     createdAt: new Date('2026-04-09T08:30:31.000Z'),
   },
   {
@@ -128,7 +130,8 @@ const messageSeed: NewMessage[] = [
     conversationId: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
     role: 'assistant',
     agentType: 'billing',
-    content: 'I can help review the balance and the retry timing if you want to update the payment method.',
+    content:
+      'I can help review the balance and the retry timing if you want to update the payment method.',
     createdAt: new Date('2026-04-09T08:30:54.000Z'),
   },
 ];

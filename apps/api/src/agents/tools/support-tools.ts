@@ -1,12 +1,7 @@
 import { tool, zodSchema } from 'ai';
 import { z } from 'zod';
 import { eq, and } from 'drizzle-orm';
-import {
-  messages,
-  customers,
-  conversations,
-  type DatabaseClient,
-} from '@swades/db';
+import { messages, customers, conversations, type DatabaseClient } from '@swades/db';
 
 export function createSupportTools(db: DatabaseClient, customerId: string) {
   return {
@@ -42,8 +37,7 @@ export function createSupportTools(db: DatabaseClient, customerId: string) {
     }),
 
     getCustomerInfo: tool({
-      description:
-        'Look up the current customer profile including name, email, and phone.',
+      description: 'Look up the current customer profile including name, email, and phone.',
       parameters: zodSchema(z.object({})),
       execute: async () => {
         const customer = await db.query.customers.findFirst({

@@ -6,17 +6,11 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@swades/db": [
-        "packages/db/src/index.ts"
-      ]
+      "@swades/db": ["packages/db/src/index.ts"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "references": [
     {
       "path": "../../packages/db"

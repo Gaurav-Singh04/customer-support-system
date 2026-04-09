@@ -19,10 +19,7 @@ const agents: Record<AgentType, AgentDefinition> = {
       'Provide general product and policy answers',
       'Escalate to specialised agents when needed',
     ],
-    tools: [
-      'getConversationHistory',
-      'getCustomerInfo',
-    ],
+    tools: ['getConversationHistory', 'getCustomerInfo'],
   },
   order: {
     type: 'order',
@@ -34,11 +31,7 @@ const agents: Record<AgentType, AgentDefinition> = {
       'Report estimated delivery dates',
       'Identify delayed or cancelled orders',
     ],
-    tools: [
-      'getCustomerOrders',
-      'getOrderDetails',
-      'getOrderEvents',
-    ],
+    tools: ['getCustomerOrders', 'getOrderDetails', 'getOrderEvents'],
   },
   billing: {
     type: 'billing',
@@ -50,12 +43,7 @@ const agents: Record<AgentType, AgentDefinition> = {
       'Identify overdue balances',
       'Explain billing discrepancies',
     ],
-    tools: [
-      'getCustomerInvoices',
-      'getInvoiceDetails',
-      'getCustomerRefunds',
-      'getRefundDetails',
-    ],
+    tools: ['getCustomerInvoices', 'getInvoiceDetails', 'getCustomerRefunds', 'getRefundDetails'],
   },
 };
 

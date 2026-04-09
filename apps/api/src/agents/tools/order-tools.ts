@@ -6,8 +6,7 @@ import { orders, orderEvents, type DatabaseClient } from '@swades/db';
 export function createOrderTools(db: DatabaseClient, customerId: string) {
   return {
     getCustomerOrders: tool({
-      description:
-        'List all orders for the current customer including status and totals.',
+      description: 'List all orders for the current customer including status and totals.',
       parameters: zodSchema(z.object({})),
       execute: async () => {
         const rows = await db.query.orders.findMany({
@@ -37,10 +36,7 @@ export function createOrderTools(db: DatabaseClient, customerId: string) {
       ),
       execute: async ({ orderNumber }) => {
         const order = await db.query.orders.findFirst({
-          where: and(
-            eq(orders.orderNumber, orderNumber),
-            eq(orders.customerId, customerId),
-          ),
+          where: and(eq(orders.orderNumber, orderNumber), eq(orders.customerId, customerId)),
           with: { orderEvents: { orderBy: [orderEvents.eventAt] } },
         });
         if (!order) return { error: `Order ${orderNumber} not found` };
